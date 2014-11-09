@@ -1,8 +1,15 @@
 import sublime
 import sublime_plugin
+
 import re
 
-from Context.base import Base
+try:
+  from Context.base import Base
+except ImportError:
+  sublime.error_message("Dependency import failed; please read readme for " +
+   "ScopeContext plugin for installation instructions; to disable this " +
+   "message remove this plugin")
+
 
 class Scope(Base):
   def on_query_context(self, *args):

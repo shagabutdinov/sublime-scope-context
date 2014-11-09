@@ -55,3 +55,8 @@ Used in snippets or keymaps. Example keymap:
     ],
   }
   ```
+
+
+### Dependencies
+
+None
