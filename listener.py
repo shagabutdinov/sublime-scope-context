@@ -18,7 +18,19 @@ class Scope(Base):
 
     result = (
       self._check_sel('scope', callback_right, *args) and
-      (sel.empty() or self._check_sel('scope', callback_left, *args))
+      self._check_sel('scope', callback_left, *args)
+    )
+
+    return result
+
+class ScopePart(Base):
+  def on_query_context(self, *args):
+    callback_left = lambda view, sel: view.scope_name(sel.begin())
+    callback_right = lambda view, sel: view.scope_name(sel.end() - 1)
+
+    result = (
+      self._check_sel('scope_part', callback_right, *args) or
+      self._check_sel('scope_part', callback_left, *args)
     )
 
     return result
